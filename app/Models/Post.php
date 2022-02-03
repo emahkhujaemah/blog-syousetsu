@@ -12,7 +12,7 @@ class Post extends Model
     // protected $fillable = ['title', 'excerpt', 'body'];
 
     protected $guarded = ['id'];
-    protected $with = ['category', 'writer'];  
+    protected $with = ['category', 'writer'];  //dipindah dari postController
 
     public function category()
     {
