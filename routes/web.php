@@ -19,20 +19,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home', [
-        "title" => "Home"
+        "title" => "Home",
+        "active" => "home",
     ]);
 });
 
 Route::get('/about', function () {
     return view('about', [
         "title" => "About",
+        "active" => "about",
         "name" => "Emah Khujaemah",
         "email" => "khuza.emah24@gmail.com",
         "image" => "emah.jpg",
     ]);
 });
 
-Route::get('/blog', [PostController::class, 'index']);
+Route::get('/posts', [PostController::class, 'index']);
 
 //halaman single post
 // Route::get('posts/{slug}', [PostController::class, 'show']); - cara biasa
