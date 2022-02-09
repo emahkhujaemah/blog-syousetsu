@@ -27,7 +27,7 @@
             <div class="card-body text-center">
                 <h3 class="card-title"><a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none text-dark">{{$posts[0]->title}}</a></h3>
                 <small class="text-muted">
-                    <p>Author: {{ $posts[0]["author"] }} <br> Write By <a href="/posts?writer={{$posts[0]->writer->username}} " class="text-decoration-none">{{ $posts[0]->writer->name }}</a> in <a href="/posts?category={{ $posts[0]->category->slug}}" class="text-decoration-none" >{{ $posts[0]->category->name}}</a> {{$posts[0]->created_at->diffForHumans()}}
+                    <p>Author: {{ $posts[0]->author->name }} <br> Write By <a href="/posts?writer={{$posts[0]->writer->username}} " class="text-decoration-none">{{ $posts[0]->writer->name }}</a> in <a href="/posts?category={{ $posts[0]->category->slug}}" class="text-decoration-none" >{{ $posts[0]->category->name}}</a> {{$posts[0]->created_at->diffForHumans()}}
                     </p>
                 </small>
                 <p class="card-text">{{$posts[0]->excerpt}}</p>               
@@ -45,7 +45,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <small class="text-muted">
-                            <p>Author: {{ $posts[0]["author"] }} <br> Write By <a href="/posts?writer={{$post->writer->username}} " class="text-decoration-none">{{ $post->writer->name }}</a> {{$posts[0]->created_at->diffForHumans()}}
+                            <p>Author: {{ $posts[0]->author->name }} <br> Write By <a href="/posts?writer={{$post->writer->username}} " class="text-decoration-none">{{ $post->writer->name }}</a> {{$posts[0]->created_at->diffForHumans()}}
                             </p>
                         </small>
                         <p class="card-text">{{ $post->excerpt }}</p>

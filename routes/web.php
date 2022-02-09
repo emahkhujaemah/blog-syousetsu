@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\PostController;
 use App\Models\Category;
 use App\Models\User;
@@ -67,3 +68,4 @@ Route::get('/writers/{writer:username}', function (User $writer) {
     ]);
 });
 
+Route::resource('/authors', AuthorController::class);

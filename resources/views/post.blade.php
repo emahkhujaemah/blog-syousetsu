@@ -6,7 +6,7 @@
         <div class="row justify-content-center mb-5">
             <div class="col-md-8">
                 <h1 class="mb-3">{{$post->title}}</h1>
-                <h5>Author: {{ $post["author"] }}</h5> 
+                <h5>Author: {{ $post->author->name }}</h5> 
                 <h6>Write By <a href="/posts?writer={{$post->writer->username}} " class="text-decoration-none">{{ $post->writer->name }}</a> in 
                     <a href="/posts?category={{ $post->category->slug}}" class="text-decoration-none" >{{ $post->category->name}}</a>
                 </h6>
