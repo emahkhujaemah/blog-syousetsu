@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Author;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -45,6 +46,29 @@ class DatabaseSeeder extends Seeder
             'name' => 'Personal',
             'slug' => 'personal'
         ]);
+
+        Author::create([
+            'name' => 'Tsukikage',
+            'slug' => 'tsukikage',
+            'country' => 'Jepang',
+            'twitter' => '@ktsuki_novel'
+        ]);
+
+        Author::create([
+            'name' => 'Nagatsuki Teppei',
+            'slug' => 'nagatsuki-teppei',
+            'country' => 'Jepang',
+            'twitter' => '@nezumiironyanko'
+        ]);
+
+        Author::create([
+            'name' => 'Achiko',
+            'slug' => 'achiko',
+            'country' => 'Jepang',
+            'twitter' => '@orefura'
+        ]);
+
+
 
         // Post::create([
         //     'title' => 'Nageki no Bourei wa Intai Shitai',

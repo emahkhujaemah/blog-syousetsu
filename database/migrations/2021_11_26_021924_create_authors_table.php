@@ -17,7 +17,7 @@ class CreateAuthorsTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->string('country')->unique();
+            $table->string('country');
             $table->string('twitter')->unique();
             $table->timestamps();
         });
