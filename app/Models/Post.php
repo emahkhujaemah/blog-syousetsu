@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use SebastianBergmann\CodeUnit\FunctionUnit;
 
 class Post extends Model
 {
@@ -16,10 +17,6 @@ class Post extends Model
 
     public function scopeFilter($query, array $filters)
     {
-        // if (isset($filters['search']) ? $filters['search'] : false) {
-        //     return $query->where('title', 'like', '%' . request('search') . '%')
-        //         ->orWhere('body', 'like', '%' . request('search') . '%');
-        // }
 
         $query->when($filters['search'] ?? false, function ($query, $search) {
             return $query->where('title', 'like', '%' . $search . '%')
@@ -31,6 +28,16 @@ class Post extends Model
                 $query->where('slug', $category);
             });
         });
+
+        $query->when(
+            $filters['author'] ?? false,
+            fn ($query,  $writer) =>
+            $query->whereHas(
+                'writer',
+                fn ($query) =>
+                $query->where('username', $writer)
+            )
+        );
     }
 
     public function category()
@@ -41,5 +48,10 @@ class Post extends Model
     public function writer()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(Author::class);
     }
 }

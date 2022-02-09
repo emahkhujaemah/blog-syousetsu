@@ -49,19 +49,21 @@ Route::get('/categories', function () {
     ]);
 });
 
-Route::get('/categories/{category:slug}', function (Category $category) {
-    return view('posts', [
-        'title' => "Post by Categories : $category->name",
-        "active" => 'categories',
-        'posts'  => $category->posts->load('writer', 'category'),
+// Route::get('/categories/{category:slug}', function (Category $category) {
+//     return view('posts', [
+//         'title' => "Post by Categories : $category->name",
+//         "active" => 'categories',
+//         'posts'  => $category->posts->load('writer', 'category'),
 
-    ]);
-});
+//     ]);
+// });
 
 //langsung dari postingan tertentu
 Route::get('/writers/{writer:username}', function (User $writer) {
     return view('posts', [
         'title' => "Post by User Posts $writer->name",
+        'active' => 'posts',
         'posts'  => $writer->posts->load('writer', 'category'),
     ]);
 });
+
