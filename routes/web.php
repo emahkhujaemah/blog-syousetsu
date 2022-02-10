@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\PostController;
-use App\Models\Category;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AuthorController;
 
 
 /*
@@ -69,3 +71,6 @@ Route::get('/writers/{writer:username}', function (User $writer) {
 });
 
 Route::resource('/authors', AuthorController::class);
+
+Route::get('/login', [LoginController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index']);
