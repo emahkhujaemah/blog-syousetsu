@@ -12,7 +12,8 @@
                 @endif
                 @if(request('category'))
                     <input type="hidden" name="category" value="{{request('category')}}">
-                @elseif(request('author'))
+                @endif
+                @if(request('author'))
                     <input type="hidden" name="author" value="{{request('author')}}">
                 @endif
                 <div class="input-group mb-3">
@@ -30,7 +31,7 @@
                 <h3 class="card-title"><a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none text-dark">{{$posts[0]->title}}</a></h3>
                 <small class="text-muted">
                     <p>Author: <a href="/posts?author={{$posts[0]->author->slug}} " class="text-decoration-none">{{ $posts[0]->author->name }}</a> <br> 
-                        Write By <a href="/posts?writer={{$posts[0]->writer->username}} " class="text-decoration-none">{{ $posts[0]->writer->name }}</a> in <a href="/posts?category={{ $posts[0]->category->name}}" class="text-decoration-none">{{ $posts[0]->category->name}}</a> {{$posts[0]->created_at->diffForHumans()}}
+                        Write By <a href="/posts?writer={{$posts[0]->writer->username}} " class="text-decoration-none">{{ $posts[0]->writer->name }}</a> in <a href="/posts?category={{ $posts[0]->category->name}}" class="text-decoration-none">{{ $posts[0]->category->name}}</a> at {{$posts[0]->created_at->diffForHumans()}}
                     </p>
                 </small>
                 <p class="card-text">{{$posts[0]->excerpt}}</p>               
@@ -49,8 +50,8 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <small class="text-muted">
-                            <p>Author: <a href="/posts?author={{$posts[0]->author->slug}} " class="text-decoration-none">{{ $posts[0]->author->name }}</a> <br> 
-                                Write By <a href="/posts?writer={{$post->writer->username}} " class="text-decoration-none">{{ $post->writer->name }}</a> in <a href="/posts?category={{ $posts[0]->category->name}}" class="text-decoration-none">{{ $post->category->name}}</a> {{$post->created_at->diffForHumans()}}
+                            <p>Author: <a href="/posts?author={{$post->author->slug}} " class="text-decoration-none">{{ $posts[0]->author->name }}</a> <br> 
+                                Write By <a href="/posts?writer={{$post->writer->username}} " class="text-decoration-none">{{ $post->writer->name }}</a> at {{$post->created_at->diffForHumans()}}
                             </p>
                         </small>
                         <p class="card-text">{{ $post->excerpt }}</p>

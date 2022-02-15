@@ -27,6 +27,12 @@ class Post extends Model
                 $query->where('slug', $category);
             });
         });
+        
+        $query->when($filters['author'] ?? false, function ($query, $author) {
+            return $query->whereHas('author', function ($query) use ($author) {
+                $query->where('slug', $author);
+            });
+        });
 
         $query->when(
             $filters['writer'] ?? false,
@@ -38,14 +44,15 @@ class Post extends Model
             )
         );
 
-        $query->when(
-            $filters['author'] ?? false, fn ($query,  $author) =>
-            $query->whereHas(
-                'author',
-                fn ($query) =>
-                $query->where('slug', $author)
-            )
-        );
+        // $query->when(
+        //     $filters['author'] ?? false, fn ($query,  $author) =>
+        //     $query->whereHas(
+        //         'author',
+        //         fn ($query) =>
+        //         $query->where('slug', $author)
+        //     )
+        // );
+
     }
 
     public function category()
@@ -61,5 +68,10 @@ class Post extends Model
     public function author()
     {
         return $this->belongsTo(Author::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }
