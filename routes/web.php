@@ -2,12 +2,13 @@
 
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Author;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AuthorController;
-
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,15 +63,29 @@ Route::get('/categories', function () {
 // });
 
 //langsung dari postingan tertentu
-Route::get('/writers/{writer:username}', function (User $writer) {
-    return view('posts', [
-        'title' => "Post by User Posts $writer->name",
-        'active' => 'posts',
-        'posts'  => $writer->posts->load('writer', 'category'),
-    ]);
-});
+// Route::get('/writers/{writer:username}', function (User $writer) {
+//     return view('posts', [
+//         'title' => "Post by User Posts $writer->name",
+//         'active' => 'posts',
+//         'posts'  => $writer->posts->load('writer', 'category')
+//     ]);
+// });
 
 Route::resource('/authors', AuthorController::class);
 
-Route::get('/login', [LoginController::class, 'index']);
-Route::get('/register', [RegisterController::class, 'index']);
+// Route::get('/authors/{authors:slug}', function (Author  $author) {
+//     return view('posts', [
+//         'title' => "Post by Author Posts $author->name",
+//         'active' => 'posts',
+//         'posts'  => $author->posts->load('author', 'category')
+//     ]);
+// });
+
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+
+
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');

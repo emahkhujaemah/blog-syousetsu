@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use SebastianBergmann\CodeUnit\FunctionUnit;
 
 class Post extends Model
 {
@@ -13,7 +12,7 @@ class Post extends Model
     // protected $fillable = ['title', 'excerpt', 'body'];
 
     protected $guarded = ['id'];
-    protected $with = ['category', 'writer'];  //dipindah dari postController
+    protected $with = ['category', 'writer', 'author'];  //dipindah dari postController
 
     public function scopeFilter($query, array $filters)
     {
@@ -30,12 +29,22 @@ class Post extends Model
         });
 
         $query->when(
-            $filters['author'] ?? false,
+            $filters['writer'] ?? false,
             fn ($query,  $writer) =>
             $query->whereHas(
                 'writer',
                 fn ($query) =>
                 $query->where('username', $writer)
+            )
+        );
+
+        $query->when(
+            $filters['author'] ?? false,
+            fn ($query,  $author) =>
+            $query->whereHas(
+                'author',
+                fn ($query) =>
+                $query->where('slug', $author)
             )
         );
     }
