@@ -1,14 +1,12 @@
 <?php
 
-use App\Models\User;
 use App\Models\Category;
-use App\Models\Author;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,14 +22,12 @@ use App\Http\Controllers\DashboardController;
 Route::get('/', function () {
     return view('home', [
         "title" => "Home",
-        "active" => "home",
     ]);
 });
 
 Route::get('/about', function () {
     return view('about', [
         "title" => "About",
-        "active" => "about",
         "name" => "Emah Khujaemah",
         "email" => "khuza.emah24@gmail.com",
         "image" => "emah.jpg",
@@ -48,10 +44,11 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::get('/categories', function () {
     return view('categories ', [
         'title' => 'Post Categories',
-        "active" => 'categories',
         'categories' => Category::all()
     ]);
 });
+
+Route::resource('/authors', AuthorController::class);
 
 // Route::get('/categories/{category:slug}', function (Category $category) {
 //     return view('posts', [
@@ -71,7 +68,6 @@ Route::get('/categories', function () {
 //     ]);
 // });
 
-Route::resource('/authors', AuthorController::class);
 
 // Route::get('/authors/{authors:slug}', function (Author  $author) {
 //     return view('posts', [
@@ -88,4 +84,9 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->middleware('auth');
+
+Route::resource('/dashboard/posts', DashboardPostController::class);
