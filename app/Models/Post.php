@@ -50,15 +50,21 @@ class Post extends Model
             });
         });
 
-        $query->when(
-            $filters['writer'] ?? false,
-            fn ($query,  $writer) =>
-            $query->whereHas(
-                'writer',
-                fn ($query) =>
-                $query->where('username', $writer)
-            )
-        );
+        $query->when($filters['writer'] ?? false, function ($query, $writer) {
+            return $query->whereHas('writer', function ($query) use ($writer) {
+                $query->where('username', $writer);
+            });
+        });
+
+        // $query->when(
+        //     $filters['writer'] ?? false,
+        //     fn ($query,  $writer) =>
+        //     $query->whereHas(
+        //         'writer',
+        //         fn ($query) =>
+        //         $query->where('username', $writer)
+        //     )
+        // );
 
         // $query->when(
         //     $filters['author'] ?? false, fn ($query,  $author) =>

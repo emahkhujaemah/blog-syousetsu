@@ -17,14 +17,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // User::create([
-        //     'name' => 'Emah Khujaemah',
-        //     'email' => 'khuzaemah@gmail.com',
-        //     'password' => bcrypt('12345')
-        // ]);
+        User::create([
+            'name' => 'Emah Khujaemah',
+            'username' => 'emahkhujaemah',
+            'email' => 'khuza.emah24@gmail.com',
+            'password' => bcrypt('password')
+        ]);
 
-        User::factory(5)->create();
-        Post::factory(30)->create();
+        User::factory(3)->create();
+        
 
         Category::create([
             'name' => 'Japanese',
@@ -67,6 +68,8 @@ class DatabaseSeeder extends Seeder
             'country' => 'Jepang',
             'twitter' => '@orefura'
         ]);
+
+        Post::factory(30)->create();
 
 
 
