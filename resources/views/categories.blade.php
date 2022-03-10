@@ -2,12 +2,12 @@
 
 @section('container')  
 
-    <h1 class="mt-3">Post Categories </h1>
+    <h1 class="mt-3 text-center">Categories </h1>
 
     <div class="container">
         <div class="row">
             @foreach ($categories as $category)
-            <div class="col-md-3">
+            <div class="col-md-3 mb-5">
                 <a href="/posts?category={{$category->slug}} ">
                     <div class="card bg-dark text-white">
                         <img src="https://source.unsplash.com/500x400?{{ $category->name }}" alt="{{ $category->name }}">
