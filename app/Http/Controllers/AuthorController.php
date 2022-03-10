@@ -43,7 +43,16 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'slug' => 'required|unique:posts',
+            'category_id' => 'required',
+            'twitter' => 'required',
+        ]);
+
+        Post::create($validatedData);
+
+        return redirect('/authors')->with('success', 'New post has been added');
     }
 
     /**

@@ -4,6 +4,12 @@
 
 <h1 class="mt-3">Authors</h1>
 
+    @if (session()->has('success'))
+    <div class="alert alert-success col-lg-10" role="alert">
+        {{session('success')}}
+    </div>
+    @endif
+
     <div class="table-responsive col-lg-10">  
         <table class="table table-striped table-sm">
             <thead>
@@ -22,9 +28,9 @@
                     <td> {{$author->country}} </td>
                     <td> {{$author->twitter}} </td>
                     <td>
-                        <a href="/author/create" class="badge btn-primary text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus-square"> Create</i></a>
-                        <a href="/author/{{$author->slug}}/edit" class="badge bg-warning text-decoration-none"><span data-feather="edit"> <i class="bi bi-pencil-square"> Edit</i></span></a>
-                        <form action="/author/{{$author->slug}}" method="POST" class="d-inline">
+                        <button type="button" class="badge btn-primary text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus-square"> Create</i></button>
+                        <a href="/authors/{{$author->slug}}/edit" class="badge bg-warning text-decoration-none"><span data-feather="edit"> <i class="bi bi-pencil-square"> Edit</i></span></a>
+                        <form action="/authors/{{$author->slug}}" method="POST" class="d-inline">
                         @method('delete')
                         @csrf
                             <button class="badge bg-danger border-0" onclick="return confirm('Are you sure ?')"><i class="bi bi-x-square"> Delete</i></button>
@@ -52,7 +58,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="col-lg">
-                        <form action="/dashboard/posts" method="POST" class="mb-5" enctype="multipart/form-data">
+                        <form action="/authors" method="POST" class="mb-5" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="author" class="form-label">Author</label>
