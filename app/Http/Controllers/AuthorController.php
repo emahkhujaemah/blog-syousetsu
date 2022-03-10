@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class AuthorController extends Controller
@@ -17,6 +18,7 @@ class AuthorController extends Controller
         return view('author', [
             'title' => 'Post Author',
             'authors' => Author::all(),
+            'categories' => Category::all()
         ]);
     }
 
@@ -27,7 +29,10 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view('author', [
+            'authors' => Author::all(),
+            'categories' => Category::all()
+        ]);
     }
 
     /**

@@ -49,7 +49,7 @@
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Create New Author</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -76,7 +76,7 @@
                             </div>           
                             @enderror
                         </div> 
-                        {{-- <div class="mb-3">
+                        <div class="mb-3">
                             <label for="category" class="form-label">Country</label>
                             <select name="category_id" id="category" class="form-select">
                                 @foreach ($categories as $category)
@@ -87,7 +87,7 @@
                                     @endif          
                                 @endforeach
                             </select>
-                        </div>  --}}
+                        </div> 
                         <div class="mb-3">
                             <label for="twitter" class="form-label">Twitter</label>
                             <input type="text" class="form-control @error('twitter') is-invalid      
@@ -97,15 +97,13 @@
                                 {{$message}}
                             </div>           
                             @enderror
-                        </div>
-                    
-                        <button type="submit" class="btn btn-primary">Create Author</button>
+                        </div>                                         
                         </form>
                     </div>
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Create Author</button>
                 </div>
             </div>
             </div>
