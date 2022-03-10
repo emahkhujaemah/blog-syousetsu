@@ -4,9 +4,7 @@
 
 <h1 class="mt-3">Authors</h1>
 
-    <div class="table-responsive col-lg-10">
-        <a href="/dashboard/posts/create" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Create New Author</a>
-    
+    <div class="table-responsive col-lg-10">  
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
@@ -23,15 +21,15 @@
                     <td> <a href="/posts?author={{$author->slug}}" class="text-decoration-none text-dark"> {{ $author->name }} </td>
                     <td> {{$author->country}} </td>
                     <td> {{$author->twitter}} </td>
-                    {{-- <td>
-                        <a href="/dashboard/posts/{{$author->slug}}" class="badge bg-info"><span data-feather="eye"></span></a>
-                        <a href="/dashboard/posts/{{$author->slug}}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
-                        <form action="/dashboard/posts/{{$author->slug}}" method="POST" class="d-inline">
+                    <td>
+                        <a href="/author/create" class="badge btn-primary text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus-square"> Create</i></a>
+                        <a href="/author/{{$author->slug}}/edit" class="badge bg-warning text-decoration-none"><span data-feather="edit"> <i class="bi bi-pencil-square"> Edit</i></span></a>
+                        <form action="/author/{{$author->slug}}" method="POST" class="d-inline">
                         @method('delete')
                         @csrf
-                            <button class="badge bg-danger border-0" onclick="return confirm('Are you sure ?')"><span data-feather="x-circle"></span></button>
+                            <button class="badge bg-danger border-0" onclick="return confirm('Are you sure ?')"><i class="bi bi-x-square"> Delete</i></button>
                         </form>
-                    </td> --}}
+                    </td>
                 </tr>
                 @endforeach
                 
