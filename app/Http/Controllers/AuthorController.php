@@ -75,7 +75,11 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        //
+        return view('authors', [  
+            // 'author' => $author,  
+            'authors' => Author::all(),
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -87,7 +91,17 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'slug' => 'required|unique:posts',
+            'category_id' => 'required',
+            'twitter' => 'required',
+        ]);
+
+        Author::where('id', $author->id)
+                ->update($validatedData);
+
+        return redirect('/authors')->with('success', 'Post has been updated');
     }
 
     /**
