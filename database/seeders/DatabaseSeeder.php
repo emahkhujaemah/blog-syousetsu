@@ -51,21 +51,21 @@ class DatabaseSeeder extends Seeder
         Author::create([
             'name' => 'Tsukikage',
             'slug' => 'tsukikage',
-            'country' => 'Jepang',
+            'category_id' => '1',
             'twitter' => '@ktsuki_novel'
         ]);
 
         Author::create([
             'name' => 'Nagatsuki Teppei',
             'slug' => 'nagatsuki-teppei',
-            'country' => 'Jepang',
+            'category_id' => '1',
             'twitter' => '@nezumiironyanko'
         ]);
 
         Author::create([
             'name' => 'Achiko',
             'slug' => 'achiko',
-            'country' => 'Jepang',
+            'category_id' => '1',
             'twitter' => '@orefura'
         ]);
 

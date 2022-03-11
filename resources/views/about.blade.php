@@ -15,7 +15,7 @@
         <p> {{$email}} </p>
         </div>            
         </div>
-        <div class="container border-primary">
+        <div class="container border-success">
             <div class="row justify-content-center">
                 <div class="col-md-5 bg-info text-dark">  
                 <div class="text-center">

@@ -29,7 +29,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        return view('author', [
+        return view('authors', [
             'authors' => Author::all(),
             'categories' => Category::all()
         ]);
@@ -43,6 +43,7 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
+
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'slug' => 'required|unique:posts',
@@ -50,7 +51,7 @@ class AuthorController extends Controller
             'twitter' => 'required',
         ]);
 
-        Post::create($validatedData);
+        Author::create($validatedData);
 
         return redirect('/authors')->with('success', 'New post has been added');
     }
