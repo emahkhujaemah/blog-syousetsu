@@ -48,7 +48,11 @@ Route::get('/categories', function () {
     ]);
 });
 
+// Route::put('update/{ $author:slug }', [App\Http\Controllers\AuthorController::class, 'update'])->name('update');
+// Route::resource('/authors', AuthorController::class)->except(['show', 'update']);
 Route::resource('/authors', AuthorController::class);
+
+
 
 // Route::get('/categories/{category:slug}', function (Category $category) {
 //     return view('posts', [

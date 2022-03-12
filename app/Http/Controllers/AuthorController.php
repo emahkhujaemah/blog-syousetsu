@@ -30,6 +30,7 @@ class AuthorController extends Controller
     public function create()
     {
         return view('authors', [
+            'title' => 'Post Author',
             'authors' => Author::all(),
             'categories' => Category::all()
         ]);
@@ -64,7 +65,12 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        //
+        return view('show', [  
+            'title' => 'Post Author',
+            // 'author' => $author,  
+            'authors' => Author::all(),
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -75,8 +81,9 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        return view('authors', [  
-            // 'author' => $author,  
+        return view('edit_author', [ 
+            'title' => 'Author',
+            'author' => $author,  
             'authors' => Author::all(),
             'categories' => Category::all()
         ]);
@@ -91,7 +98,7 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        return $request;
+        // return $request;
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'slug' => 'required|unique:posts',
@@ -102,7 +109,7 @@ class AuthorController extends Controller
         Author::where('id', $author->id)
                 ->update($validatedData);
 
-        return redirect('/authors')->with('success', 'author has been updated');
+        return redirect('/authors')->with('success', 'Author has been updated');
     }
 
     /**
@@ -117,4 +124,6 @@ class AuthorController extends Controller
         $author->delete();
         return redirect('/authors')->with('success', 'Author has been deleted!');
     }
+
+
 }

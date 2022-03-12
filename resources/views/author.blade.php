@@ -30,9 +30,10 @@
             <td> {{$author->category->name}} </td>
             <td> {{$author->twitter}} </td>
             <td>
-                <button type="button" class="badge bg-warning text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit-{{ $author->slug }}"><i class="bi bi-pencil-square"> Edit</i></button>
 
                 <!-- Edit Modal -->
+                <button type="button" class="badge bg-warning text-decoration-none" data-id="put" data-bs-toggle="modal" data-bs-target="#edit-{{ $author->slug }}"><i class="bi bi-pencil-square"> Edit</i></button>
+
                 <div class="modal fade" id="edit-{{ $author->slug }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                     <div class="modal-content">
@@ -40,11 +41,12 @@
                             <h5 class="modal-title" id="exampleModalLabel">Edit Author</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                            <form action="{{ action('App\Http\Controllers\AuthorController@update', $author->slug) }} " method="POST" class="mb-5" enctype="multipart/form-data">
+                            <form action="/authors/{{$author->slug}}" method="POST" class="mb-5" enctype="multipart/form-data">
+                                @method('put')
+                                @csrf
+
                                 <div class="modal-body">
                                     <div class="col-lg">
-                                        @method('put')
-                                        @csrf
                                         <div class="mb-3 form-group">
                                             <label for="name" class="form-label">Author</label>
                                             <input type="text" class="form-control @error('name') is-invalid      
@@ -98,7 +100,8 @@
                     </div>
                 </div>
                 <!-- End Modal -->
-                
+
+                <a href="/authors/{{$author->slug}}/edit" class="badge bg-warning text-decoration-none"><span data-feather="edit"></span><i class="bi bi-pencil-square"> Edit</i></a>               
                 <form action="/authors/{{$author->slug}}" method="POST" class="d-inline">
                 @method('delete')
                 @csrf
@@ -112,10 +115,6 @@
 </table>
 </div>
 
-<!-- Button trigger modal 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-Create New Author
-</button> -->
 
 <!-- Create Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -182,6 +181,8 @@ Create New Author
     </div>
 </div>
 <!-- End Modal -->
+
+
 
 @endsection
 
