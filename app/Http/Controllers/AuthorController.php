@@ -91,6 +91,7 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
+        return $request;
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'slug' => 'required|unique:posts',
