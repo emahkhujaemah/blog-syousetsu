@@ -15,7 +15,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        return view('author', [
+        return view('author.index', [
             'title' => 'Post Author',
             'authors' => Author::all(),
             'categories' => Category::all()
@@ -65,9 +65,9 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        return view('show', [  
+        return view('author.show', [  
             'title' => 'Post Author',
-            // 'author' => $author,  
+            'author' => $author,  
             'authors' => Author::all(),
             'categories' => Category::all()
         ]);
@@ -81,7 +81,7 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        return view('edit_author', [ 
+        return view('author.edit', [ 
             'title' => 'Author',
             'author' => $author,  
             'authors' => Author::all(),
