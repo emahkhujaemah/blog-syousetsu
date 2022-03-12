@@ -32,7 +32,7 @@
             <td>
 
                 <!-- Edit Modal -->
-                <button type="button" class="badge bg-warning text-decoration-none" data-id="put" data-bs-toggle="modal" data-bs-target="#edit-{{ $author->slug }}"><i class="bi bi-pencil-square"> Edit</i></button>
+                <button type="button" class="badge bg-warning border-0" data-id="put" data-bs-toggle="modal" data-bs-target="#edit-{{ $author->slug }}"><i class="bi bi-pencil-square"> Edit</i></button>
 
                 <div class="modal fade" id="edit-{{ $author->slug }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -101,7 +101,9 @@
                 </div>
                 <!-- End Modal -->
 
-                <a href="/authors/{{$author->slug}}/edit" class="badge bg-warning text-decoration-none"><span data-feather="edit"></span><i class="bi bi-pencil-square"> Edit</i></a>               
+                {{-- Button Edit Untuk halaman baru --}}
+                {{-- <a href="/authors/{{$author->slug}}/edit" class="badge bg-warning"><span data-feather="edit"></span><i class="bi bi-pencil-square"> Edit</i></a>   --}}
+                
                 <form action="/authors/{{$author->slug}}" method="POST" class="d-inline">
                 @method('delete')
                 @csrf
