@@ -30,8 +30,11 @@
                     <td> {{$author->category->name}} </td>
                     <td> {{$author->twitter}} </td>
                     <td>
-                        <button type="button" class="badge bg-warning text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit"><i class="bi bi-pencil-square"> Edit</i></button>                        
-                        {{-- <a href="/authors/{{$author->slug}}/edit" class="badge bg-warning text-decoration-none"><span data-feather="edit"> <i class="bi bi-pencil-square"> Edit</i></span></a> --}}
+                        <button type="button" class="badge bg-warning text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit"><i class="bi bi-pencil-square"> Edit</i></button>
+
+                        {{-- <a href="/authors/{{$author->slug}}/edit" class="badge bg-warning text-decoration-none" ><span data-feather="edit"> <i class="bi bi-pencil-square"> Edit</i></span></a> --}}
+
+
                         <form action="/authors/{{$author->slug}}" method="POST" class="d-inline">
                         @method('delete')
                         @csrf
@@ -121,17 +124,18 @@
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Create New Author</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Author</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                    {{-- <form action=" {{action('App\Http\Controllers\AuthorController@update')}} " method="POST" class="mb-5" enctype="multipart/form-data">
+                    <form action="/authors/{{$author->slug}}" method="POST" class="mb-5" enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="col-lg">
+                                @method('put')
                                 @csrf
                                 <div class="mb-3 form-group">
                                     <label for="name" class="form-label">Author</label>
                                     <input type="text" class="form-control @error('name') is-invalid      
-                                    @enderror" id="name" name="name" required autofocus value="{{old('name')}}">
+                                    @enderror" id="name" name="name" required autofocus value="{{old('name', $author->name)}}">
                                     @error('name')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -141,18 +145,18 @@
                                 <div class="mb-3 form-group">
                                     <label for="slug" class="form-label">Slug</label>
                                     <input type="text" class="form-control @error('slug') is-invalid      
-                                    @enderror" id="slug" name="slug" required value="{{old('slug')}}">
+                                    @enderror" id="slug" name="slug" required value="{{old('slug', $author->slug)}}">
                                     @error('slug')
                                     <div class="invalid-feedback">
                                         {{$message}}
                                     </div>           
                                     @enderror
                                 </div> 
-                                <div class="mb-3 form-group">
-                                    <label for="category" class="form-label">Country</label>
+                                <div class="mb-3">
+                                    <label for="category" class="form-label">Category</label>
                                     <select name="category_id" id="category" class="form-select">
                                         @foreach ($categories as $category)
-                                            @if (old('category_id') == $category->id)
+                                            @if (old('category_id', $author->category_id) == $category->id)
                                                 <option value="{{$category->id}}" selected>{{$category->name}}</option>
                                             @else
                                                 <option value="{{$category->id}}">{{$category->name}}</option>
@@ -163,7 +167,7 @@
                                 <div class="mb-3 form-group">
                                     <label for="twitter" class="form-label">Twitter</label>
                                     <input type="text" class="form-control @error('twitter') is-invalid      
-                                    @enderror" id="twitter" name="twitter" required autofocus value="{{old('twitter')}}">
+                                    @enderror" id="twitter" name="twitter" required autofocus value="{{old('twitter', $author->twitter)}}">
                                     @error('twitter')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -176,13 +180,11 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Create Author</button>
                         </div>
-                    </form> --}}
-                    coba
+                    </form>                  
                 </div>
             </div>
         </div>
         <!-- End Modal -->
-
 
 @endsection
 

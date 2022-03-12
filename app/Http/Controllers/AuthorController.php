@@ -53,7 +53,7 @@ class AuthorController extends Controller
 
         Author::create($validatedData);
 
-        return redirect('/authors')->with('success', 'New post has been added');
+        return redirect('/authors')->with('success', 'New author has been added');
     }
 
     /**
@@ -101,7 +101,7 @@ class AuthorController extends Controller
         Author::where('id', $author->id)
                 ->update($validatedData);
 
-        return redirect('/authors')->with('success', 'Post has been updated');
+        return redirect('/authors')->with('success', 'author has been updated');
     }
 
     /**
@@ -110,8 +110,10 @@ class AuthorController extends Controller
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Author $author)
+    public function destroy($slug)
     {
-        //
+        $author =Author::where('slug',$slug)->first();
+        $author->delete();
+        return redirect('/authors')->with('success', 'Author has been deleted!');
     }
 }
