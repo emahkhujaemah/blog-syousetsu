@@ -1,0 +1,14 @@
+khuzaemah_novel.com 
+
+Fitur :
+1. Post
+2. Category = Novel, RPL, Hobby.
+3. Author/Novel_Title :
+- judul novel
+- nama author
+- negara
+- twitter
+
+
+
+

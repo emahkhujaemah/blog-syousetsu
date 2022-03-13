@@ -23,8 +23,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'khuza.emah24@gmail.com',
             'password' => bcrypt('password')
         ]);
-
-        User::factory(3)->create();
         
 
         Category::create([
@@ -50,26 +48,41 @@ class DatabaseSeeder extends Seeder
 
         Author::create([
             'name' => 'Tsukikage',
+            'title' => 'Nageki no Bourei wa Intai Shitai',
             'slug' => 'tsukikage',
             'category_id' => '1',
             'twitter' => '@ktsuki_novel'
         ]);
-
+        
         Author::create([
-            'name' => 'Nagatsuki Teppei',
-            'slug' => 'nagatsuki-teppei',
-            'category_id' => '1',
-            'twitter' => '@nezumiironyanko'
+            'name' => 'Geunseo',
+            'title' => 'The S Classes That I Raised',
+            'slug' => 'geunseo',
+            'category_id' => '2',
+            'twitter' => '근서'
+        ]);
+        Author::create([
+            'name' => 'Eagle Eats The Chick',
+            'title' => 'Global Martial Arts',
+            'slug' => 'eagle-eats-the-chick',
+            'category_id' => '3',
+            'twitter' => '老鹰吃小鸡'
+        ]);
+        Author::create([
+            'name' => '	Phantom Of The Moonlit Night',
+            'title' => 'Running Away From Hero!',
+            'slug' => 'phantom-of-the-moonlit-night',
+            'category_id' => '2',
+            'twitter' => '월야-팬텀'
         ]);
 
         Author::create([
             'name' => 'Achiko',
+            'title' => 'Ore no Shibou Flag wa Todomaru o Shiranai',
             'slug' => 'achiko',
             'category_id' => '1',
             'twitter' => '@orefura'
         ]);
-
-        Post::factory(30)->create();
 
 
 
@@ -78,7 +91,7 @@ class DatabaseSeeder extends Seeder
         //     'category_id' => 1,
         //     'user_id' => 1,
         //     'slug' => "negeki-no-bourei",
-        //     'author' => "Tsukikage",
+        //     'author_id' => "1",
         //     'excerpt' => 'Existing all over the world sleeps treasure tools with special powers.Riches, Prestige, and finally Power.Chasing glory, an era where Treasure Hunters rampage through Treasure Shrines without regard for danger.',
         //     'body' => "<p>Existing all over the world sleeps treasure tools with special powers.Riches, Prestige, and finally Power.Chasing glory, an era where Treasure Hunters rampage through Treasure Shrines without regard for danger.Together with his childhood friends, Cry shares the dream of becoming a hunter. On their first expedition he notices that out of the six of them, he is the only one without any talent.However, that was only the beginning of their adventures.</p>
         //     <p>'Its too unreasonable. I want to quit this dangerous job already. I’m gonna throw up.'

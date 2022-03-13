@@ -15,7 +15,8 @@ class CreateAuthorsTable extends Migration
     {
         Schema::create('authors', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name');
+            $table->string('title')->unique();
             $table->string('slug')->unique();
             $table->foreignId('category_id');
             $table->string('twitter')->unique();

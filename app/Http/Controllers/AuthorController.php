@@ -47,6 +47,7 @@ class AuthorController extends Controller
 
         $validatedData = $request->validate([
             'name' => 'required|max:255',
+            'title' => 'required|max:255',
             'slug' => 'required|unique:posts',
             'category_id' => 'required',
             'twitter' => 'required',
@@ -101,6 +102,7 @@ class AuthorController extends Controller
         // return $request;
         $validatedData = $request->validate([
             'name' => 'required|max:255',
+            'title' => 'required|max:255',
             'slug' => 'required|unique:posts',
             'category_id' => 'required',
             'twitter' => 'required',
