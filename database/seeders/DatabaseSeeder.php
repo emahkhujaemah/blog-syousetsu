@@ -84,6 +84,14 @@ class DatabaseSeeder extends Seeder
             'twitter' => '@orefura'
         ]);
 
+        Author::create([
+            'name' => 'Nagatsuki Teppei',
+            'title' => 'Re:Zero Kara Hajimeru Isekai Seikatsu',
+            'slug' => 're-zero-kara-hajimeru-isekai-seikatsu',
+            'category_id' => '1',
+            'twitter' => '@nezumiironyanko'
+        ]);
+
 
 
         // Post::create([

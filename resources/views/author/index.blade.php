@@ -12,8 +12,8 @@
 
 <button type="button" class="button btn-primary text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus-square"> Create</i></button>
 
-<div class="table-responsive col-lg-10">  
-<table class="table table-striped table-sm">
+<div class="table-responsive-lg ">  
+<table class="table table-striped table-sm table-hover col-lg-10">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -46,7 +46,6 @@
                             <form action="/authors/{{$author->slug}}" method="POST" class="mb-5" enctype="multipart/form-data">
                                 @method('put')
                                 @csrf
-
                                 <div class="modal-body">
                                     <div class="col-lg">
                                         <div class="mb-3 form-group">
@@ -59,42 +58,6 @@
                                             </div>           
                                             @enderror
                                         </div>
-                                        <div class="mb-3 form-group">
-                                            <label for="slug" class="form-label">Slug</label>
-                                            <input type="text" class="form-control @error('slug') is-invalid      
-                                            @enderror" id="slug" name="slug" required value="{{old('slug', $author->slug)}}">
-                                            @error('slug')
-                                            <div class="invalid-feedback">
-                                                {{$message}}
-                                            </div>           
-                                            @enderror
-                                        </div> 
-                                        <div class="mb-3">
-                                            <label for="category" class="form-label">Category</label>
-                                            <select name="category_id" id="category" class="form-select">
-                                                @foreach ($categories as $category)
-                                                    @if (old('category_id', $author->category_id) == $category->id)
-                                                        <option value="{{$category->id}}" selected>{{$category->name}}</option>
-                                                    @else
-                                                        <option value="{{$category->id}}">{{$category->name}}</option>
-                                                    @endif          
-                                                @endforeach
-                                            </select>
-                                        </div> 
-                                        <div class="mb-3 form-group">
-                                            <label for="twitter" class="form-label">Twitter</label>
-                                            <input type="text" class="form-control @error('twitter') is-invalid      
-                                            @enderror" id="twitter" name="twitter" required autofocus value="{{old('twitter', $author->twitter)}}">
-                                            @error('twitter')
-                                            <div class="invalid-feedback">
-                                                {{$message}}
-                                            </div>           
-                                            @enderror
-                                        </div>                                                                
-                                    </div>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="col-lg">
                                         <div class="mb-3 form-group">
                                             <label for="title" class="form-label">Title</label>
                                             <input type="text" class="form-control @error('title') is-invalid      
@@ -136,7 +99,7 @@
                                                 {{$message}}
                                             </div>           
                                             @enderror
-                                        </div>                                                                
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
