@@ -34,7 +34,7 @@
             <img src="https://source.unsplash.com/1200x400/?{{ $posts[0]->category->name }} " class="card-img-top" alt="{{ $posts[0]->category->name }}">
             @endif
             <div class="card-body text-center">
-                <h3 class="card-title"><a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none text-dark">{{$posts[0]->title}}</a></h3>
+                <h3 class="card-title"><a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none text-dark"> {{$posts[0]->author->title}} - {{$posts[0]->title}}</a></h3>
                 <small class="text-muted">
                     <p>Author: <a href="/posts?author={{$posts[0]->author->slug}} " class="text-decoration-none">{{ $posts[0]->author->name }}</a> <br> 
                         Write By <a href="/posts?writer={{$posts[0]->writer->username}} " class="text-decoration-none">{{ $posts[0]->writer->name }}</a> 
@@ -60,7 +60,8 @@
                     @endif
 
                     <div class="card-body">
-                        <h5 class="card-title">{{ $post->title }}</h5>
+                        <h5 class="card-title">{{ $post->author->title }}</h5>
+                        <h6 class="card-title">{{ $post->title }}</h6>
                         <small class="text-muted">
                             <p>Author: <a href="/posts?author={{$post->author->slug}}" class="text-decoration-none">{{ $post->author->name }}</a> <br> 
                                 Write By <a href="/posts?writer={{$post->writer->username}}" class="text-decoration-none">{{ $post->writer->name }}</a> 

@@ -9,7 +9,19 @@
     <form action="/dashboard/posts" method="POST" class="mb-5" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
+        <label for="titles" class="form-label">Title</label>
+        <select name="author_id" id="titles" class="form-select">
+            @foreach ($authors as $author)
+                @if (old('author_id') == $author->id)
+                    <option value="{{$author->id}}" selected>{{$author->title}}</option>
+                @else
+                    <option value="{{$author->id}}">{{$author->title}}</option>
+                @endif          
+            @endforeach
+        </select>
+    </div>     
+    <div class="mb-3">
+        <label for="title" class="form-label">Chapter</label>
         <input type="text" class="form-control @error('title') is-invalid      
         @enderror" id="title" name="title" required autofocus value="{{old('title')}}">
         @error('title')
@@ -29,6 +41,18 @@
         @enderror
     </div> 
     <div class="mb-3">
+        <label for="author" class="form-label">Author</label>
+        <select name="author_id" id="author" class="form-select">
+            @foreach ($authors as $author)
+                @if (old('author_id') == $author->id)
+                    <option value="{{$author->id}}" selected>{{$author->name}}</option>
+                @else
+                    <option value="{{$author->id}}">{{$author->name}}</option>
+                @endif          
+            @endforeach
+        </select>
+    </div>
+    <div class="mb-3">
         <label for="category" class="form-label">Category</label>
         <select name="category_id" id="category" class="form-select">
             @foreach ($categories as $category)
@@ -40,18 +64,7 @@
             @endforeach
         </select>
     </div> 
-    <div class="mb-3">
-        <label for="author" class="form-label">Author</label>
-        <select name="author_id" id="author" class="form-select">
-            @foreach ($authors as $author)
-                @if (old('author_id') == $author->id)
-                    <option value="{{$author->id}}" selected>{{$author->name}}</option>
-                @else
-                    <option value="{{$author->id}}">{{$author->name}}</option>
-                @endif          
-            @endforeach
-        </select>
-    </div> 
+    
     <div class="mb-3">
         <label for="image" class="form-label">Post Image</label>
         <img class="img-preview img-fluid mb-3 col-sm-5">

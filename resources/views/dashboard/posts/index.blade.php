@@ -6,12 +6,12 @@
 </div> 
 
 @if (session()->has('success'))
-<div class="alert alert-success col-lg-10" role="alert">
+<div class="alert alert-success col-lg-11" role="alert">
     {{session('success')}}
 </div>
 @endif
 
-<div class="table-responsive col-lg-10">
+<div class="table-responsive col-lg-11">
 <a href="/dashboard/posts/create" class="btn btn-primary mb-3 ">Create New Post</a>
 
     <table class="table table-striped table-sm">
@@ -19,6 +19,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
+                <th scope="col">Chapter</th>
                 <th scope="col">Category</th>
                 <th scope="col">Author</th>
                 <th scope="col">Action</th>
@@ -28,12 +29,13 @@
             @foreach ($posts as $post)
             <tr>
                 <td> {{$loop->iteration}} </td>
+                <td> {{$post->author->title}} </td>
                 <td> {{$post->title}} </td>
                 <td> {{$post->category->name}} </td>
                 <td> {{$post->author->name}} </td>
                 <td>
                     <a href="/dashboard/posts/{{$post->slug}}" class="badge bg-info"><span data-feather="eye"></span></a>
-                    <a href="/dashboard/posts/{{$post->slug}}" class="badge bg-warning"><span data-feather="edit"></span></a>
+                    <a href="/dashboard/posts/{{$post->slug}}/edit" class="badge bg-warning"><span data-feather="edit"></span></a>
                     <form action="/dashboard/posts/{{$post->slug}}" method="POST" class="d-inline">
                     @method('delete')
                     @csrf
