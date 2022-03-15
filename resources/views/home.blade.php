@@ -29,7 +29,7 @@
             </div>                
             </div>
             <div class="col-sm-6 p-xl-4 ">
-            <img src="img/global-martial-arts.jpg" class="img-thumbnail rounded mx-auto d-block mb-4" alt="gareki" width="500px">
+            <img src="{{asset('img/global-martial-arts.jpg')}}" class="img-thumbnail rounded mx-auto d-block mb-4" alt="gareki" width="500px">
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@
     <div class="container-fluid dua">
         <div class="row justify-content-center p-4">
         <div class="col-sm-6 p-xl-4 mt-4">
-            <img src="img/onmyoji.jpg" class="img-thumbnail rounded mx-auto d-block" alt="Natsume" width="500px">
+            <img src="{{asset('img/onmyoji.jpg')}}" class="img-thumbnail rounded mx-auto d-block" alt="Natsume" width="500px">
         </div>
         <div class="col-sm-6 p-3">
             <div class="container ms-3 mt-4">
@@ -79,7 +79,7 @@
                 </div>
             </div>
                 <div class="col-sm-6 p-xl-4 mb-3">
-                <img src="img/Strange_Grief_Volume_5.jpg" class="img-thumbnail rounded mx-auto d-block mb-4" alt="Harold X Erika" width="500px">               
+                <img src="{{asset('img/Strange_Grief_Volume_5.jpg')}}" class="img-thumbnail rounded mx-auto d-block mb-4" alt="Harold X Erika" width="500px">               
             </div>
             </div>
     </div>
