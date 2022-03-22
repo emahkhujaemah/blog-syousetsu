@@ -4,7 +4,7 @@
 
 <div class="row justify-content-center">
     <div class="text-center p-3">
-        <img class="mb-4" src="/assets/favoritechara.png" alt="favorite" height="100px">
+        <img class="mb-4" src="/assets/favoritechara.png" alt="favorite" height="130px">
     </div>
     <div class="col-lg-5">
         @if (session()->has('success'))
