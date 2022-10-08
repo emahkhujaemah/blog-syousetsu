@@ -17,7 +17,7 @@ class AuthorController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         return view('author.index', [
@@ -71,9 +71,9 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        return view('author.show', [  
+        return view('author.show', [
             'title' => 'Post Author',
-            'author' => $author,  
+            'author' => $author,
             'authors' => Author::all(),
             'categories' => Category::all()
         ]);
@@ -87,9 +87,9 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        return view('author.edit', [ 
+        return view('author.edit', [
             'title' => 'Author',
-            'author' => $author,  
+            'author' => $author,
             'authors' => Author::all(),
             'categories' => Category::all()
         ]);
@@ -114,7 +114,7 @@ class AuthorController extends Controller
         ]);
 
         Author::where('id', $author->id)
-                ->update($validatedData);
+            ->update($validatedData);
 
         return redirect('/authors')->with('success', 'Author has been updated');
     }
@@ -127,10 +127,8 @@ class AuthorController extends Controller
      */
     public function destroy($slug)
     {
-        $author =Author::where('slug',$slug)->first();
+        $author = Author::where('slug', $slug)->first();
         $author->delete();
         return redirect('/authors')->with('success', 'Author has been deleted!');
     }
-
-
 }

@@ -17,12 +17,13 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence(mt_rand(2, 8)),
             'slug' => $this->faker->slug(),
             'excerpt' => $this->faker->paragraph(),
-            //  'body' => '<p>' . implode('</p><p>', $this->faker->paragraphs(mt_rand(5, 10)))  . '</p>',
-            'body' => collect($this->faker->paragraphs(mt_rand(5, 10)))
-                ->map(fn ($p) => "<p>$p</p>")
-                ->implode(''),
-            'author_id' => mt_rand(1, 3),
-            'user_id' => mt_rand(1, 4),
+            'body' => '<p>' . implode('</p><p>', $this->faker->paragraphs(mt_rand(5, 10)))  . '</p>',
+            // 'body' => collect($this->faker->paragraphs(mt_rand(5, 10)))
+            //     ->map(fn ($p) => "<p>$p</p>")
+            //     ->implode(''),
+            'author_id' => mt_rand(1, 6),
+            // 'user_id' => mt_rand(1, 4),
+            'user_id' => 1,
             'category_id' => mt_rand(1, 4)
         ];
     }
