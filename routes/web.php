@@ -23,7 +23,7 @@ Route::get('/', function () {
     return view('home', [
         "title" => "Home",
     ]);
-});
+})->name('home');
 
 Route::get('/about', function () {
     return view('about', [
@@ -32,13 +32,10 @@ Route::get('/about', function () {
         "email" => "khuza.emah24@gmail.com",
         "image" => "emah.jpg",
     ]);
-});
+})->name('about');
 
-Route::get('/posts', [PostController::class, 'index']);
-
-//halaman single post
-// Route::get('posts/{slug}', [PostController::class, 'show']); - cara biasa
-Route::get('posts/{post:slug}', [PostController::class, 'show']);
+Route::get('/posts', [PostController::class, 'index'])->name('posts');
+Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('post');
 
 //buat halaman untuk category
 Route::get('/categories', function () {
@@ -46,13 +43,30 @@ Route::get('/categories', function () {
         'title' => 'Post Categories',
         'categories' => Category::all()
     ]);
-});
+})->name('categories');
+
+Route::resource('/authors', AuthorController::class);
+
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+
+
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->middleware('auth');
+
+Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
+Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
+
+//halaman single post
+// Route::get('posts/{slug}', [PostController::class, 'show']); - cara biasa
 
 // Route::put('update/{ $author:slug }', [App\Http\Controllers\AuthorController::class, 'update'])->name('update');
 // Route::resource('/authors', AuthorController::class)->except(['show', 'update']);
-Route::resource('/authors', AuthorController::class);
-
-
 
 // Route::get('/categories/{category:slug}', function (Category $category) {
 //     return view('posts', [
@@ -80,18 +94,3 @@ Route::resource('/authors', AuthorController::class);
 //         'posts'  => $author->posts->load('author', 'category')
 //     ]);
 // });
-
-Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout']);
-
-
-Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store']);
-
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->middleware('auth');
-
-Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
-Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');

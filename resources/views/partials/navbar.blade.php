@@ -7,21 +7,20 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link {{Request::is('/') ? 'active' : '' }} " aria-current="page" href="/">Home</a>
+                    <a class="nav-link {{Request::is('/') ? 'active' : '' }} " aria-current="page" href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{Request::is('about') ? 'active' : '' }}" href="/about">About</a>
+                    <a class="nav-link {{Request::is('about') ? 'active' : '' }}" href="{{ route('about') }}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{Request::is('posts') ? 'active' : '' }}" href="/posts">Blog</a>
+                    <a class="nav-link {{Request::is('posts') ? 'active' : '' }}" href="{{ route('posts') }}">Blog</a>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link {{Request::is('categories') ? 'active' : '' }}" href="/categories">Categories</a>
+                    <a class="nav-link {{Request::is('categories') ? 'active' : '' }}" href="{{ route('categories') }}">Categories</a>
                 </li>
                 @auth
                 <li class="nav-item">
-                    <a class="nav-link {{Request::is('authors') ? 'active' : '' }}" href="/authors">Authors Work</a>
+                    <a class="nav-link {{Request::is('authors') ? 'active' : '' }}" href="{{ route('authors.index') }}">Author's Work</a>
                 </li>
                 @endauth
             </ul>
